@@ -17,3 +17,6 @@ __pycache__
 # Trivia site
 .env
 staticfiles/
+
+# Migrations
+migrations/
