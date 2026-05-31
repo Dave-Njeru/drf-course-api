@@ -40,3 +40,10 @@ class OrderSerializer(serializers.ModelSerializer):
     class Meta:
         model = Order
         fields = ('order_id', 'created_at', 'user', 'status', 'items', 'total_price')
+
+# Flexible serializer for displaying products info
+# Not tied to a specific model
+class ProductInfoSerializer(serializers.Serializer):
+    products = ProductSerializer(many=True, read_only=True)
+    count = serializers.IntegerField()
+    max_price = serializers.DecimalField(max_digits=10, decimal_places=2)
