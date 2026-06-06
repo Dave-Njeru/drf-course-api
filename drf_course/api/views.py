@@ -6,6 +6,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.views import APIView
 
 class ProductListAPIView(generics.ListAPIView):
     queryset = Product.objects.filter(stock__gt=0)  # Only return products that are in stock
@@ -29,12 +30,12 @@ class UserOrderListAPIView(generics.ListAPIView):
         return queryset.filter(user=self.request.user)  # Filter orders by user ID
 
 # Aggregate API data for products info
-@api_view(['GET'])
-def products_info(request):
-    products = Product.objects.all()
-    serializer = ProductInfoSerializer({
-        'products': products,
-        'count': len(products),
-        'max_price': products.aggregate(max_price=Max('price'))['max_price']
-    })
-    return Response(serializer.data)
+class ProductInfoAPIView(APIView):
+    def get(self, request):
+        products = Product.objects.all()
+        serializer = ProductInfoSerializer({
+            'products': products,
+            'count': len(products),
+            'max_price': products.aggregate(max_price=Max('price'))['max_price']
+        })
+        return Response(serializer.data)
