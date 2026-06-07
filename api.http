@@ -1,9 +1,9 @@
 GET http://127.0.0.1:8000/api/products/ HTTP/1.1
 
-###
+### Test request for creating a new product with admin token
 POST http://127.0.0.1:8000/api/products/ HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzgwODIyMDg3LCJpYXQiOjE3ODA4MjE3ODcsImp0aSI6IjkzYzY0YTczNzhiODQ1ZDQ4OTU1NDEzZDA2MWU5MDI5IiwidXNlcl9pZCI6IjEifQ.g6Oe_R3gWbLdnfhZL7xiY-w1QMrFTa4FcIh4GK7HNXw
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzgwODU3ODQ1LCJpYXQiOjE3ODA4NTc1NDUsImp0aSI6ImYwMWRiZTYwNzM2MjQyN2NiMTFlYTFkYzEyMzU5YjJiIiwidXNlcl9pZCI6IjEifQ.GA2FSDRg8uBVB07DzDi6rcqu0j9INM_nTaER9AieMr4
 
 {
     "name": "Test Product",
@@ -12,7 +12,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
     "stock": 100
 }
 
-###
+### Test request for token authentication
 POST http://127.0.0.1:8000/api/token/ HTTP/1.1
 Content-Type: application/json
 
@@ -20,3 +20,24 @@ Content-Type: application/json
     "username": "admin",
     "password": "test"
 }
+
+### Refresh token request
+POST http://127.0.0.1:8000/api/token/refresh/ HTTP/1.1
+Content-Type: application/json
+
+{
+    "refresh": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc4MDk0NDU2NCwiaWF0IjoxNzgwODU4MTY0LCJqdGkiOiI3Yzc3YWMxZWY2MDE0Y2UzYTVhY2QyZDllM2U2MTE5MSIsInVzZXJfaWQiOiIxIn0.mWS8HzOHwHUX2tvWh7c4e8lOzlT4H_MZvZ4lICX1Dv4"
+}
+### Test authorized patch request
+PATCH  http://localhost:8000/api/products/2/ HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzgwODU3ODQ1LCJpYXQiOjE3ODA4NTc1NDUsImp0aSI6ImYwMWRiZTYwNzM2MjQyN2NiMTFlYTFkYzEyMzU5YjJiIiwidXNlcl9pZCI6IjEifQ.GA2FSDRg8uBVB07DzDi6rcqu0j9INM_nTaER9AieMr4
+
+{
+    "price": 24.99
+}
+
+### Test authorized delete request
+DELETE http://localhost:8000/api/products/9/ HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzgwODU4NDkyLCJpYXQiOjE3ODA4NTgxOTIsImp0aSI6IjdkODRhMzg4NTMzNTRkMTk4MjI0MWRhMWRjOWY3NWViIiwidXNlcl9pZCI6IjEifQ.4HdK0CZO9CRSEBPI5X12Ed5w1jb3FTFCyPjX7ek5LBc
