@@ -3,10 +3,20 @@ GET http://127.0.0.1:8000/api/products/ HTTP/1.1
 ###
 POST http://127.0.0.1:8000/api/products/ HTTP/1.1
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzgwODIyMDg3LCJpYXQiOjE3ODA4MjE3ODcsImp0aSI6IjkzYzY0YTczNzhiODQ1ZDQ4OTU1NDEzZDA2MWU5MDI5IiwidXNlcl9pZCI6IjEifQ.g6Oe_R3gWbLdnfhZL7xiY-w1QMrFTa4FcIh4GK7HNXw
 
 {
     "name": "Test Product",
     "price": 19.99,
     "description": "A test product for API testing.",
     "stock": 100
+}
+
+###
+POST http://127.0.0.1:8000/api/token/ HTTP/1.1
+Content-Type: application/json
+
+{
+    "username": "admin",
+    "password": "test"
 }
